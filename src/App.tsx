@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import CompanyList from "./pages/CompanyList";
+import Companies from "./pages/Companies";
 
 const App: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const App: React.FC = () => {
         path="/painel/empresas"
         element={
           <ProtectedRoute>
-            <CompanyList />
+            <Companies />
           </ProtectedRoute>
         }
       />
