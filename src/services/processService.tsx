@@ -49,3 +49,13 @@ export const updateProcess = async (
   );
   return response.data;
 };
+
+// Função para deletar um processo
+export const deleteProcess = async (
+  id: string,
+  token: string
+): Promise<void> => {
+  await axios.delete(`http://localhost:8000/api/processes/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};

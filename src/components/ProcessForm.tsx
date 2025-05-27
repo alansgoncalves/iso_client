@@ -27,34 +27,37 @@ const ProcessForm = ({ process, onSubmit }: ProcessFormProps) => {
     defaultValues: {
       name: process?.name || "",
       description: process?.description || "",
-      companyId: process?.company_id || "",
+      companyId: process?.company_id || "", // ajuste conforme os dados
       ownerId: process?.owner_id || "",
     },
   });
 
+  const submitHandler = (data: ProcessFormData) => {
+    onSubmit(data, process?._id);
+  };
+
   return (
-    <form onSubmit={handleSubmit((data) => onSubmit(data, process?._id))}>
+    <form onSubmit={handleSubmit(submitHandler)} className="space-y-4">
       <div>
-        <label>Nome</label>
-        <input {...register("name")} className="input" />
-        {errors.name && <p>{errors.name.message}</p>}
+        <label className="block font-medium">Nome do Processo</label>
+        <input {...register("name")} className="w-full border p-2 rounded" />
+        {errors.name && (
+          <p className="text-red-500 text-sm">{errors.name.message}</p>
+        )}
       </div>
+
       <div>
-        <label>Descrição</label>
-        <input {...register("description")} className="input" />
-        {errors.description && <p>{errors.description.message}</p>}
+        <label className="block font-medium">Descrição</label>
+        <input
+          {...register("description")}
+          className="w-full border p-2 rounded"
+        />
       </div>
-      <div>
-        <label>Empresa ID</label>
-        <input {...register("companyId")} className="input" />
-        {errors.companyId && <p>{errors.companyId.message}</p>}
-      </div>
-      <div>
-        <label>Responsável</label>
-        <input {...register("ownerId")} className="input" />
-        {errors.ownerId && <p>{errors.ownerId.message}</p>}
-      </div>
-      <button type="submit" className="btn">
+
+      <button
+        type="submit"
+        className="bg-blue-600 text-white px-4 py-2 rounded"
+      >
         {process ? "Atualizar" : "Criar"}
       </button>
     </form>
