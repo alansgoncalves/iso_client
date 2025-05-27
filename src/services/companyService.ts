@@ -19,7 +19,7 @@ export const getCompanies = async (token: string): Promise<Company[]> => {
   return response.data;
 };
 
-// Função para obter uma empresa específica
+// Função para criar uma empresa específica
 export const createCompany = async (
   data: Omit<Company, "_id">,
   token: string
