@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Companies from "./pages/Companies";
 import Processes from "./pages/Processes";
+import NotFound from "./pages/NotFound";
 
 const App: React.FC = () => {
   const token = localStorage.getItem("token");
@@ -40,17 +41,8 @@ const App: React.FC = () => {
         }
       />
 
-      {/* Redirecionamento para rota padrão */}
-      <Route
-        path="*"
-        element={
-          token ? (
-            <Navigate to="/dashboard" replace />
-          ) : (
-            <Navigate to="/login" replace />
-          )
-        }
-      />
+      {/* Página 404 customizada */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
