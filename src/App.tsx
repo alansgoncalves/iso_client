@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -8,7 +8,7 @@ import Processes from "./pages/Processes";
 import NotFound from "./pages/NotFound";
 
 const App: React.FC = () => {
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   return (
     <Routes>
@@ -26,7 +26,7 @@ const App: React.FC = () => {
       <Route
         path="/painel/empresas"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute requiredRole="admin">
             <Companies />
           </ProtectedRoute>
         }
