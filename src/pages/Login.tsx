@@ -29,8 +29,11 @@ const Login: React.FC = () => {
       localStorage.setItem("role", user.role);
       localStorage.setItem("companyId", user.company_id);
 
-      // Redireciona para o dashboard ou página principal
-      navigate("/dashboard");
+      if (user.role === "admin") {
+        navigate("/painel/empresas");
+      } else {
+        navigate("/dashboard");
+      }
     } catch (error: any) {
       setErro(error.response?.data?.message || "Erro ao fazer login");
     }
