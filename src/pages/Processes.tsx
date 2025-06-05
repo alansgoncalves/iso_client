@@ -25,14 +25,22 @@ const Processes = () => {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editProcess, setEditProcess] = useState<Process | null>(null);
 
+  const role = localStorage.getItem("role");
+  const userCompanyId = localStorage.getItem("companyId");
+
   useEffect(() => {
     const fetchProcesses = async () => {
       try {
         const token = localStorage.getItem("token");
         if (!token) throw new Error("Token não encontrado");
-
         const data = await getProcesses(token);
-        setProcesses(data);
+
+        const filtered =
+          role === "admin"
+            ? data
+            : data.filter((p) => p.company_id === userCompanyId);
+
+        setProcesses(filtered);
         setFilteredProcesses(data);
       } catch (error) {
         console.error("Erro ao buscar processos:", error);

@@ -25,7 +25,8 @@ const Login: React.FC = () => {
 
       // Armazena o token e dados do usuário
       localStorage.setItem("token", token);
-      localStorage.setItem("role", JSON.stringify(user));
+      // localStorage.setItem("role", JSON.stringify(user));
+      localStorage.setItem("role", user.role);
       localStorage.setItem("companyId", user.company_id);
 
       // Redireciona para o dashboard ou página principal
